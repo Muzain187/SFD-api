@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="login-box">
+    <h2>Tiger Food Technology</h2>
+    <form action="create.html" id="createaccount" method="post">
+      <div class="user-box">
+        <input type="text" name="restaurant" required="">
+        <label>Restaurant Name</label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="owner" required="">
+        <label>Owner Name</label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="address" required="">
+        <label>Address </label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="zipcode" required="">
+        <label>Zip Code</label>
+      </div>
+      <div class="user-box">
+        <input type="number" name="phone" required="">
+        <label>Phone Number</label>
+      </div>
+      <div class="user-box">
+        <input type="email" name="email" required="">
+        <label>Email</label>
+      </div>
+      
+      <button type="submit" >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Create Account<br>
+      </button>
+      <!-- <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Reviews Of Restaurtant<br>
+      </a> -->
+    </form>
+  </div>
+</body>
+
+
+  <script>
+    // show a message with a type of the input
+
+    const form = document.querySelector("#createaccount");
+    form.addEventListener("submit", function (event) {
+      // stop form submission
+      event.preventDefault();
+      console.log(form.elements["owner"].value)
+
+      let options = {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({ 
+            restaurant:form.elements["restaurant"].value,
+            owner:form.elements["owner"].value,
+            phone:form.elements["phone"].value,
+            address:form.elements["address"].value,
+            zipcode:form.elements["zipcode"].value,
+            email:form.elements["email"].value
+        })
+      }
+
+      fetch('https://ca81-103-185-199-68.ngrok-free.app/sfd-api-c7e6d/us-central1/app/api/createaccount',options)
+      .then((response)=>alert("Successfully created"))
+      .then((json)=>console.log(json));
+    });
+
+
+  </script>
+</html>
